@@ -6,7 +6,7 @@
 /*   By: toespino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 07:58:17 by toespino          #+#    #+#             */
-/*   Updated: 2026/02/16 18:23:35 by toespino         ###   ########.fr       */
+/*   Updated: 2026/02/16 19:33:46 by toespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 static void	sig_handle(int32_t signal, siginfo_t *info, void *context)
 {
 	static int32_t	i = 0;
-	static char		letter = 0;
+	static char		caracter = 0;
 
 	(void)context;
 	if (i <= 7)
 	{
-		letter |= ((signal & 1) << i);
+		caracter |= ((signal & 1) << i);
 		i++;
 	}
 	else
 	{
-		ft_printf("%c", letter);
-		if (letter == 0)
+		ft_printf("%c", caracter);
+		if (caracter == 0)
 			kill(info->si_pid, SIGUSR1);
 		i = 0;
-		letter = 0;
+		caracter = 0;
 	}
 }
 
