@@ -15,14 +15,13 @@ LDLIBS = -lft
 
 OBJSERV = main.o\
 
-
 OBJCLIENT = main.o\
 
 
 OBJSERVS = $(addprefix $(OBJDIRSERV), $(OBJSERV))
 OBJCLIENTS = $(addprefix $(OBJDIRCLIENT), $(OBJCLIENT))
 
-all: $(NAMESERV) $(NAMECLIENT) $(LIBFT)
+all: $(NAMESERV) $(NAMECLIENT) 
 
 $(OBJDIRSERV):
 	mkdir -p $@
@@ -40,6 +39,9 @@ $(LIBFT):
 	make -C $(LIBFT_DIR) -j
 
 $(OBJDIRSERV)%.o: $(SRCDIRSERV)%.c | $(OBJDIRSERV)
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+
+$(OBJDIRCLIENT)%.o: $(SRCDIRCLIENT)%.c | $(OBJDIRCLIENT)
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
