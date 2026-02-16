@@ -6,6 +6,7 @@ SRCDIRSERV = src/server/
 SRCDIRCLIENT = src/client/
 OBJDIRSERV = build/server/
 OBJDIRCLIENT = build/client/
+OBJDIR = build/
 INCLUDE = -Iinclude -Ilibft/include
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -29,10 +30,10 @@ $(OBJDIRSERV):
 $(OBJDIRCLIENT):
 	mkdir -p $@
 
-$(NAMESERV): $(OBJSERVS)
+$(NAMESERV): $(OBJSERVS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJSERVS) $(LDFLAGS) $(LDLIBS) -o $@
 
-$(NAMECLIENT): $(OBJCLIENTS)
+$(NAMECLIENT): $(OBJCLIENTS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJCLIENTS) $(LDFLAGS) $(LDLIBS) -o $@
 
 $(LIBFT):

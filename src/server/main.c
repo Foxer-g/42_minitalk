@@ -6,22 +6,43 @@
 /*   By: toespino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 07:58:17 by toespino          #+#    #+#             */
-/*   Updated: 2026/02/16 17:18:33 by toespino         ###   ########.fr       */
+/*   Updated: 2026/02/16 18:23:35 by toespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+static void	sig_handle(int32_t signal, siginfo_t *info, void *context)
+{
+	static int32_t	i = 0;
+	static char		letter = 0;
+
+	(void)context;
+	if (i <= 7)
+	{
+		letter |= ((signal & 1) << i);
+		i++;
+	}
+	else
+	{
+		ft_printf("%c", letter);
+		if (letter == 0)
+			kill(info->si_pid, SIGUSR1);
+		i = 0;
+		letter = 0;
+	}
+}
 
 int32_t	main(void)
 {
 	struct	sigaction	sig_action;
 	int32_t				id;
 
-	id = get_pid();
+	id = getpid();
 	ft_printf("%d\n", id);
-	sig_action.sa_sigaction = ;
+	sig_action.sa_sigaction = sig_handle;
 	sig_action.sa_flags = SA_SIGINFO;
-	sigemptyset(&sa.sa_mask);
+	sigemptyset(&sig_action.sa_mask);
 	sigaction(SIGUSR1, &sig_action, NULL);
 	sigaction(SIGUSR2, &sig_action, NULL);
 	while (true)
