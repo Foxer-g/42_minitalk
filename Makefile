@@ -1,10 +1,11 @@
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
-NAME = server\
-	client\
-SRCDIR = src/
-OBJDIRSERV = build/server
-OBJDIRCLIENT = build/client
+NAMESERV = server
+NAMECLIENT = client
+SRCDIRSERV = src/server/
+SRCDIRCLIENT = src/client/
+OBJDIRSERV = build/server/
+OBJDIRCLIENT = build/client/
 INCLUDE = -Iinclude -Ilibft/include
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -20,18 +21,24 @@ OBJCLIENT = main.o\
 OBJSERVS = $(addprefix $(OBJDIRSERV), $(OBJSERV))
 OBJCLIENTS = $(addprefix $(OBJDIRCLIENT), $(OBJCLIENT))
 
-all: $(NAME)
+all: $(NAMESERV) $(NAMECLIENT) $(LIBFT)
 
-$(OBJDIRSER):
+$(OBJDIRSERV):
 	mkdir -p $@
 
-$(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $@
+$(OBJDIRCLIENT):
+	mkdir -p $@
+
+$(NAMESERV): $(OBJSERVS)
+	$(CC) $(CFLAGS) $(OBJSERVS) $(LDFLAGS) $(LDLIBS) -o $@
+
+$(NAMECLIENT): $(OBJCLIENTS)
+	$(CC) $(CFLAGS) $(OBJCLIENTS) $(LDFLAGS) $(LDLIBS) -o $@
 
 $(LIBFT):
 	make -C $(LIBFT_DIR) -j
 
-$(OBJDIR)%.o: $(SRCDIR)%.c | $(OBJDIR)
+$(OBJDIRSERV)%.o: $(SRCDIRSERV)%.c | $(OBJDIRSERV)
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
@@ -39,7 +46,8 @@ clean:
 	make -C $(LIBFT_DIR) clean -j
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAMESERV)
+	rm -f $(NAMECLIENT)
 	make -C $(LIBFT_DIR) fclean -j
 
 re: fclean
