@@ -6,7 +6,7 @@
 /*   By: toespino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 07:58:17 by toespino          #+#    #+#             */
-/*   Updated: 2026/02/16 15:11:42 by f0xer            ###   ########.fr       */
+/*   Updated: 2026/02/16 17:18:33 by toespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 int32_t	main(void)
 {
-	struct	sigaction	sa;
-	pid_t				id;
+	struct	sigaction	sig_action;
+	int32_t				id;
 
-	id = get_pid;
+	id = get_pid();
 	ft_printf("%d\n", id);
-	sa.sa_sigaction = display;
-	sigemptyset()
-	sigaction(SIGUSR1, &sa, NULL);
-	sigaction(SIGUSR2, &sa, NULL);
+	sig_action.sa_sigaction = ;
+	sig_action.sa_flags = SA_SIGINFO;
+	sigemptyset(&sa.sa_mask);
+	sigaction(SIGUSR1, &sig_action, NULL);
+	sigaction(SIGUSR2, &sig_action, NULL);
 	while (true)
 		pause();
 }
