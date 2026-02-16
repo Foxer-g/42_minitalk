@@ -1,21 +1,28 @@
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
-NAME = minitalk
+NAME = server\
+	client\
 SRCDIR = src/
-OBJDIR = build/
+OBJDIRSERV = build/server
+OBJDIRCLIENT = build/client
 INCLUDE = -Iinclude -Ilibft/include
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 LDFLAGS = -L$(LIBFT_DIR)
 LDLIBS = -lft
 
-OBJ = main.o \
+OBJSERV = main.o\
 
-OBJS = $(addprefix $(OBJDIR), $(OBJ))
+
+OBJCLIENT = main.o\
+
+
+OBJSERVS = $(addprefix $(OBJDIRSERV), $(OBJSERV))
+OBJCLIENTS = $(addprefix $(OBJDIRCLIENT), $(OBJCLIENT))
 
 all: $(NAME)
 
-$(OBJDIR):
+$(OBJDIRSER):
 	mkdir -p $@
 
 $(NAME): $(OBJS) $(LIBFT)
