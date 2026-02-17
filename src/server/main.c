@@ -6,31 +6,60 @@
 /*   By: toespino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 07:58:17 by toespino          #+#    #+#             */
-/*   Updated: 2026/02/16 22:11:13 by toespino         ###   ########.fr       */
+/*   Updated: 2026/02/17 07:45:54 by toespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
+static char	*join_write(char *str, char c)
+{
+	char	*res;
+	int32_t	i;
+	int32_t	len;
+
+	res = NULL;
+	len = ft_strlen(str);
+	if (c == '\0')
+		ft_printf("%s\n", str);
+	else
+	{
+		res = malloc(len + 2);
+		if (!res)
+			return (str);
+		i = 0;
+		while (i < len)
+		{
+			res[i] = str[i];
+			i++;
+		}
+		res[i++] = c;
+		res[i] = '\0';
+	}
+	free(str);
+	str = NULL;
+	return (res);
+}
+
 static void	sig_handle(int32_t signal, siginfo_t *info, void *context)
 {
 	static int32_t	i = 0;
-	static char		caracter = 0;
+	static char		character = 0;
+	static char		*str = NULL;
 
 	(void)context;
-	if (i <= 7)
+	if (!str)
+		str = ft_strdup("");
+	if (signal == SIGUSR1)
+		character |= (1 << i);
+	i++;
+	if (i >= 8)
 	{
-		caracter |= ((signal & 1) << i);
-		i++;
-	}
-	else
-	{
-		ft_printf("%c", caracter);
-		if (caracter == 0)
-			kill(info->si_pid, SIGUSR1);
+		str = join_write(str, character);
 		i = 0;
-		caracter = 0;
+		character = 0;
 	}
+	kill(info->si_pid, SIGUSR1);
 }
 
 int32_t	main(void)
