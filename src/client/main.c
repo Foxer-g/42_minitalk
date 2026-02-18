@@ -6,13 +6,26 @@
 /*   By: toespino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 19:23:24 by toespino          #+#    #+#             */
-/*   Updated: 2026/02/17 06:54:32 by toespino         ###   ########.fr       */
+/*   Updated: 2026/02/18 07:21:11 by f0xer            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
 volatile sig_atomic_t	g_ack = 0;
+
+bool	ft_isfulldigit(char *string)
+{
+	int32_t	i;
+	bool	res;
+
+	res = true;
+	i = 0;
+	while (string[i])
+		if (!ft_isdigit(string[i++]))
+			res &= false;
+	return (res);
+}
 
 void	ackn_handle(int32_t signal, siginfo_t *info, void *context)
 {
@@ -50,12 +63,20 @@ int32_t	main(int32_t ac, char **av)
 	uint64_t			i;
 
 	if (ac != 3)
+	{
+		ft_printf("client take two parameters : ./client <serv_id> <message>");
 		return (0);
+	}
+	serv_id = ft_atoi(av[1]);
+	if (serv_id <= 1 || !ft_isfulldigit(av[1]))
+	{
+		ft_printf("ERROR : Invalid pid");
+		return (0);
+	}	
 	sig_action.sa_sigaction = ackn_handle;
 	sig_action.sa_flags = SA_SIGINFO;
 	sigemptyset(&sig_action.sa_mask);
 	sigaction(SIGUSR1, &sig_action, NULL);
-	serv_id = ft_atoi(av[1]);
 	i = 0;
 	while (av[2][i])
 		send_caracter(serv_id, (unsigned char)av[2][i++]);
