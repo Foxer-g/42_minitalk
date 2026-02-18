@@ -6,7 +6,7 @@
 /*   By: toespino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 07:58:17 by toespino          #+#    #+#             */
-/*   Updated: 2026/02/17 07:45:54 by toespino         ###   ########.fr       */
+/*   Updated: 2026/02/18 06:46:25 by f0xer            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int32_t	main(void)
 	struct	sigaction	sig_action;
 	const int32_t		id = getpid();
 
-	ft_printf("%d\n", id);
+	ft_printf("[SYS] server pid : %d\n", id);
 	sig_action.sa_sigaction = sig_handle;
 	sig_action.sa_flags = SA_SIGINFO;
 	sigemptyset(&sig_action.sa_mask);
