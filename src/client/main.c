@@ -6,7 +6,7 @@
 /*   By: toespino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 19:23:24 by toespino          #+#    #+#             */
-/*   Updated: 2026/02/18 07:21:11 by f0xer            ###   ########.fr       */
+/*   Updated: 2026/02/18 14:15:16 by f0xer            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,5 @@ int32_t	main(int32_t ac, char **av)
 	while (av[2][i])
 		send_caracter(serv_id, (unsigned char)av[2][i++]);
 	send_caracter(serv_id, 0);
+	ft_printf("[SYS] message succesfully received\n");
 }
