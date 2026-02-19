@@ -31,7 +31,7 @@ At the end the client will write an aknowledge message in the terminal when the 
 
 ## Ressources
 
-> arch man page of sigaction : [arch man](https://man.archlinux.org/man/sigaction.2.en)
-> bit shift explained by : [5bNeumann](https://profile.intra.42.fr/users/rboutelo)
+> - arch man page of sigaction : [arch man](https://man.archlinux.org/man/sigaction.2.en)
+> - bit shift explained by : [5bNeumann](https://profile.intra.42.fr/users/rboutelo)
 
 AI has been used to understand asyncronous principle in this project.
