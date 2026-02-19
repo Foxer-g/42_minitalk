@@ -6,7 +6,7 @@
 /*   By: toespino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 19:23:24 by toespino          #+#    #+#             */
-/*   Updated: 2026/02/18 14:15:16 by f0xer            ###   ########.fr       */
+/*   Updated: 2026/02/19 16:21:08 by toespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	send_caracter(int32_t serv_id, unsigned char caracter)
 {
 	int32_t	to_send;
 	int32_t	i;
-	
+
 	i = 0;
 	while (i < 8)
 	{
@@ -58,7 +58,7 @@ void	send_caracter(int32_t serv_id, unsigned char caracter)
 
 int32_t	main(int32_t ac, char **av)
 {
-	struct	sigaction	sig_action;
+	struct sigaction	sig_action;
 	int32_t				serv_id;
 	uint64_t			i;
 
@@ -72,7 +72,7 @@ int32_t	main(int32_t ac, char **av)
 	{
 		ft_printf("ERROR : Invalid pid");
 		return (0);
-	}	
+	}
 	sig_action.sa_sigaction = ackn_handle;
 	sig_action.sa_flags = SA_SIGINFO;
 	sigemptyset(&sig_action.sa_mask);

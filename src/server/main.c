@@ -6,7 +6,7 @@
 /*   By: toespino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 07:58:17 by toespino          #+#    #+#             */
-/*   Updated: 2026/02/18 06:46:25 by f0xer            ###   ########.fr       */
+/*   Updated: 2026/02/19 16:21:29 by toespino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	sig_handle(int32_t signal, siginfo_t *info, void *context)
 
 int32_t	main(void)
 {
-	struct	sigaction	sig_action;
+	struct sigaction	sig_action;
 	const int32_t		id = getpid();
 
 	ft_printf("[SYS] server pid : %d\n", id);
