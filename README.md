@@ -17,11 +17,22 @@ Those two acts as input and output for data transmition
 ## Usage instructions
 
 The server just need to be executed as follows
-![]()
+
+```sh
+./server
+```
+output exemple :
+```sh
+[SYS] server pid : 3765698
+```
 and it will give its pid to be used by the client
 
 This one is called with two inputs as follows
-![]()
+
+```sh
+./client <server_id> <data_to_send>
+```
+
 The first one is the server's pid and the second one the data to transfer.
 
 The data must contain only characters presents in the unicode table.
