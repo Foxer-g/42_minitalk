@@ -1,5 +1,3 @@
-*This project has been created as part of the 42 curriculum by toespino*
-
 # MINITALK
 
 Minitalk is a project form 42's Common Core on the circle 2
@@ -43,7 +41,7 @@ At the end the client will write an aknowledge message in the terminal when the 
 ## Ressources
 
 > - **Arch man page of sigaction** : [Arch man](https://man.archlinux.org/man/sigaction.2.en)
-> - **Bit shift explained** by : [5BNeumann](https://profile.intra.42.fr/users/rboutelo)
+> - **Bit shift explained** by : [5BNeumann](https://github.com/5BNeumann)
 > - **Gif creation made with** : [VHS by Charm team](https://github.com/charmbraclet/vhs)
 
 AI has been used to understand asyncronous principle in this project.
